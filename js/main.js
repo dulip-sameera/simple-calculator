@@ -53,3 +53,11 @@ window.addEventListener("click", function (e) {
     display(equationString);
   }
 });
+
+// clear display
+window.addEventListener("click", function (e) {
+  if (e.target.attributes["data-key"].value === "clear") {
+    equationString = "";
+    display("");
+  }
+});
