@@ -1,0 +1,22 @@
+@import "./fonts";
+
+// colors
+$case_bg_color: #37474f;
+$num_pad_bg_color: #8bc34a;
+$function_bg_color: #e91e63;
+$equal_bg_color: #ffb300;
+$num_pad_txt_color: #fff;
+$display_bg_color: #03a9f4;
+$display_txt_color: #fff;
+
+//fonts
+$num_pad_txt_size: $primary;
+$display_txt_size: $secondary;
+
+$num_pad_txt_weight: $bold;
+$display_txt_weight: $bold;
+
+// number pad
+$num_pad_width: 550px;
+$num_pad_height: 660px;
+$num_pad_bd_radius: 25px;

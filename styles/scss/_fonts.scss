@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap");
+
+//font weights
+$regular: 400;
+$medium: 500;
+$semi_bold: 600;
+$bold: 700;
+
+//font sizes
+$primary: 96px;
+$secondary: 64px;
+
+@mixin font($size, $weight, $color) {
+  font-family: "Cabin", sans-serif;
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+}

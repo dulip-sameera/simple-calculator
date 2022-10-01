@@ -1,0 +1,118 @@
+@import "./variable";
+
+// Global Styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .calculator {
+    width: 656px;
+    height: 910px;
+    background-color: $case_bg_color;
+    border-radius: 50px;
+    padding: 40px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    .display {
+      width: 575px;
+      height: 131px;
+      border-radius: 25px;
+      background-color: $display_bg_color;
+      padding: 30px;
+
+      #displayContent {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        max-width: 575px;
+        overflow: hidden;
+        @include font(
+          $display_txt_size,
+          $display_txt_weight,
+          $display_txt_color
+        );
+      }
+    }
+
+    .numPad {
+      width: $num_pad_width;
+      height: $num_pad_height;
+      //   background-color: gray;
+
+      display: grid;
+      justify-content: space-between;
+      gap: 40px;
+      grid-template-columns: auto auto auto auto;
+      .key {
+        width: 100px;
+        height: 100px;
+        background-color: $num_pad_bg_color;
+        border-radius: $num_pad_bd_radius;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include font(
+          $num_pad_txt_size,
+          $num_pad_txt_weight,
+          $num_pad_txt_color
+        );
+
+        &:hover {
+          background-color: lighten($num_pad_bg_color, 10%);
+          cursor: pointer;
+        }
+      }
+
+      .ops {
+        background-color: $function_bg_color;
+
+        img {
+          width: 50px;
+          height: 50px;
+        }
+
+        &:hover {
+          background-color: lighten($function_bg_color, 10%);
+          cursor: pointer;
+        }
+      }
+
+      .equal {
+        background-color: $equal_bg_color;
+        grid-column: 4/5;
+        grid-row: 4/6;
+        height: 246px;
+
+        &:hover {
+          background-color: lighten($equal_bg_color, 10%);
+          cursor: pointer;
+        }
+      }
+
+      .zero {
+        grid-column: 1/3;
+        grid-row: 5/6;
+        width: 100%;
+      }
+
+      .dot {
+        img {
+          width: 25px;
+          height: 25px;
+        }
+      }
+    }
+  }
+}
