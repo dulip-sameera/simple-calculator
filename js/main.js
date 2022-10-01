@@ -61,3 +61,11 @@ window.addEventListener("click", function (e) {
     display("");
   }
 });
+
+// delete display values
+window.addEventListener("click", function (e) {
+  if (e.target.attributes["data-key"].value === "delete") {
+    equationString = equationString.slice(0, equationString.length - 1);
+    display(equationString);
+  }
+});
