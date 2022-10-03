@@ -1,3 +1,5 @@
+const MAX_ALLOWED_DIGITS = 14;
+
 // calculator functions
 
 // 1. add function
@@ -40,12 +42,13 @@ function operate(num1, num2, operator) {
 // display the given value
 function display(value) {
   displayContent.textContent = "";
+
   if (Array.isArray(value) && value.some((item) => operators.includes(item))) {
     previous.textContent = value[0] + value[1];
     displayContent.textContent = value[2];
   } else if (Array.isArray(value)) {
     displayContent.textContent = value.join("").toString();
-  } else if (typeof value === "number") {
+  } else if (!Array.isArray(value)) {
     previous.textContent = "";
     displayContent.textContent = value;
   }
@@ -57,7 +60,6 @@ let input = ["", "", ""];
 const operators = ["+", "-", "*", "/", "="];
 window.addEventListener("click", function (e) {
   let value = e.target.attributes["data-key"].value;
-
   // issue: cant press new number after pressing =
   //        new number append to the final value
   // fixed
@@ -75,15 +77,28 @@ window.addEventListener("click", function (e) {
       input[count] = value;
     }
   } else {
-    // check whether input already has an operator
-    if (input.some((item) => operators.includes(item))) {
-      count += 2;
+    {
+      // check whether input already has an operator
+      if (
+        input.some((item) => operators.includes(item)) &&
+        input[2].length < MAX_ALLOWED_DIGITS
+      ) {
+        count += 2;
+        input[count] += value;
+      }
+
+      if (
+        input[0].length < MAX_ALLOWED_DIGITS &&
+        !operators.includes(input[1])
+      ) {
+        input[count] += value;
+      }
     }
-    input[count] += value;
   }
   display(input);
 
-  console.log(input);
+  console.log("1:" + input[0].length);
+  console.log("2:" + input[2].length);
   console.log(input.length);
 
   // runs the calculation and display the value
