@@ -22,5 +22,20 @@ function divide(num1, num2) {
   }
   return num2 !== 0 ? num1 / num2 : "Not Divisible By Zero";
 }
+
+// does a operation to given numbers based on the given operator
+function operate(num1, num2, operator) {
+  switch (operator) {
+    case "+":
+      return add(num1, num2);
+    case "-":
+      return subtract(num1, num2);
+    case "*":
+      return multiply(num1, num2);
+    case "/":
+      return divide(num1, num2);
+  }
+}
+
 // testing...
-console.log(divide(0, 0));
+// console.log(operate(num1, num2, operator));
