@@ -7,7 +7,7 @@ function add(num1, num2) {
 
 // 2. subtract function
 function subtract(num1, num2) {
-  return num1 >= num2 ? num1 - num2 : num2 - num1;
+  return num1 - num2;
 }
 
 // 3. multiplication function
@@ -40,18 +40,28 @@ function operate(num1, num2, operator) {
 // display the given value
 function display(value) {
   displayContent.textContent = "";
-  displayContent.textContent = value;
+  if (Array.isArray(value) && value.some((item) => operators.includes(item))) {
+    previous.textContent = value[0] + value[1];
+    displayContent.textContent = value[2];
+  } else if (Array.isArray(value)) {
+    displayContent.textContent = value.join("").toString();
+  } else if (typeof value === "number") {
+    previous.textContent = "";
+    displayContent.textContent = value;
+  }
 }
 
 // get the clicked input
+let finalValue = 0;
 let input = ["", "", ""];
 const operators = ["+", "-", "*", "/", "="];
 window.addEventListener("click", function (e) {
   let value = e.target.attributes["data-key"].value;
+
   let count = 0;
   if (operators.includes(value)) {
     count++;
-    // check whether input already has an operator
+    // check whether input already hasn't an operator
     if (!input.some((item) => operators.includes(item))) {
       input[count] = value;
     }
@@ -62,8 +72,10 @@ window.addEventListener("click", function (e) {
     }
     input[count] += value;
   }
+  display(input);
+
   console.log(input);
-  display(input.join(""));
+  console.log(input.length);
 });
 
 // testing...
