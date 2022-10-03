@@ -37,5 +37,33 @@ function operate(num1, num2, operator) {
   }
 }
 
+// display the given value
+function display(value) {
+  displayContent.textContent = "";
+  displayContent.textContent = value;
+}
+
+// get the clicked input
+let input = ["", "", ""];
+const operators = ["+", "-", "*", "/", "="];
+window.addEventListener("click", function (e) {
+  let value = e.target.attributes["data-key"].value;
+  let count = 0;
+  if (operators.includes(value)) {
+    count++;
+    // check whether input already has an operator
+    if (!input.some((item) => operators.includes(item))) {
+      input[count] = value;
+    }
+  } else {
+    // check whether input already has an operator
+    if (input.some((item) => operators.includes(item))) {
+      count += 2;
+    }
+    input[count] += value;
+  }
+  console.log(input);
+  display(input.join(""));
+});
+
 // testing...
-// console.log(operate(num1, num2, operator));
