@@ -44,6 +44,19 @@
           $display_txt_color
         );
       }
+
+      #previous {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        max-width: 575px;
+        overflow: hidden;
+        @include font(
+          $previous_txt_size,
+          $display_txt_weight,
+          $display_txt_color
+        );
+      }
     }
 
     .numPad {

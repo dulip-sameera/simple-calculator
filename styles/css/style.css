@@ -40,6 +40,17 @@
   font-weight: 700;
   color: #fff;
 }
+.container .calculator .display #previous {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  max-width: 575px;
+  overflow: hidden;
+  font-family: "Cabin", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
 .container .calculator .numPad {
   width: 550px;
   height: 660px;
