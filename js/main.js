@@ -58,6 +58,15 @@ const operators = ["+", "-", "*", "/", "="];
 window.addEventListener("click", function (e) {
   let value = e.target.attributes["data-key"].value;
 
+  // issue: cant press new number after pressing =
+  //        new number append to the final value
+  // fixed
+  if (input[1] === "=" && !operators.includes(value)) {
+    input = ["", "", ""];
+  } else if (input[1] === "=" && operators.includes(value)) {
+    input[1] = value;
+  }
+
   let count = 0;
   if (operators.includes(value)) {
     count++;
