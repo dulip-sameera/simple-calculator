@@ -85,6 +85,18 @@ window.addEventListener("click", function (e) {
 
   console.log(input);
   console.log(input.length);
+
+  // runs the calculation and display the value
+  if (input[2] !== "" && operators.includes(value)) {
+    let num1 = input[0] === "" ? 0 : Number(input[0]);
+    let operator = input[1];
+    let num2 = input[2] === "" ? 0 : Number(input[2]);
+    finalValue = operate(num1, num2, operator);
+    input[0] = finalValue;
+    input[1] = value === "=" ? "=" : value;
+    input[2] = "";
+    display(finalValue);
+  }
 });
 
 // testing...
