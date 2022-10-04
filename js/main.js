@@ -22,7 +22,7 @@ function divide(num1, num2) {
   if (num1 === 0 && num2 === 0) {
     return NaN;
   }
-  return num2 !== 0 ? num1 / num2 : "Not Divisible By Zero";
+  return num2 !== 0 ? num1 / num2 : `You Stupid!`;
 }
 
 // does a operation to given numbers based on the given operator
@@ -58,8 +58,15 @@ function display(value) {
 let finalValue = 0;
 let input = ["", "", ""];
 const operators = ["+", "-", "*", "/", "="];
+const specialFunctions = ["clear", "delete"];
 window.addEventListener("click", function (e) {
-  let value = e.target.attributes["data-key"].value;
+  // remove special functions from operating
+  let value = specialFunctions.includes(e.target.attributes["data-key"].value)
+    ? null
+    : e.target.attributes["data-key"].value;
+  if (!value) {
+    return;
+  }
   // issue: cant press new number after pressing =
   //        new number append to the final value
   // fixed
@@ -97,16 +104,18 @@ window.addEventListener("click", function (e) {
   }
   display(input);
 
-  console.log("1:" + input[0].length);
-  console.log("2:" + input[2].length);
-  console.log(input.length);
-
   // runs the calculation and display the value
   if (input[2] !== "" && operators.includes(value)) {
     let num1 = input[0] === "" ? 0 : Number(input[0]);
     let operator = input[1];
     let num2 = input[2] === "" ? 0 : Number(input[2]);
-    finalValue = operate(num1, num2, operator);
+    let result = operate(num1, num2, operator);
+    if (result.length > 14) {
+      finalValue = roundAccurately(result, MAX_ALLOWED_DIGITS);
+    } else {
+      finalValue = result;
+    }
+
     input[0] = finalValue;
     input[1] = value === "=" ? "=" : value;
     input[2] = "";
@@ -114,4 +123,6 @@ window.addEventListener("click", function (e) {
   }
 });
 
-// testing...
+function roundAccurately(num, places) {
+  return parseFloat(Math.round(num + "e" + places) + "e-" + places);
+}
