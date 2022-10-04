@@ -61,12 +61,20 @@ const operators = ["+", "-", "*", "/", "="];
 const specialFunctions = ["clear", "delete"];
 window.addEventListener("click", function (e) {
   // remove special functions from operating
-  let value = specialFunctions.includes(e.target.attributes["data-key"].value)
-    ? null
-    : e.target.attributes["data-key"].value;
-  if (!value) {
-    return;
+  let value;
+  if (specialFunctions.includes(e.target.attributes["data-key"].value)) {
+    if (value === "clear") {
+      clear();
+      return;
+    }
+    if (value === "delete") {
+      deleteString();
+      return;
+    }
+  } else {
+    value = e.target.attributes["data-key"].value;
   }
+
   // issue: cant press new number after pressing =
   //        new number append to the final value
   // fixed
@@ -125,4 +133,13 @@ window.addEventListener("click", function (e) {
 
 function roundAccurately(num, places) {
   return parseFloat(Math.round(num + "e" + places) + "e-" + places);
+}
+
+function clear() {
+  input = ["", "", ""];
+  finalValue = 0;
+}
+
+function deleteString() {
+  console.log("lo");
 }
